@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "237696271635",
+    "project_id": "flutter-ticket-5a7f8",
+    "storage_bucket": "flutter-ticket-5a7f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237696271635:android:99467ac14655eecdad06e6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_ticket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "237696271635-np8a3fjocj2fa7vqsimao9fjhm4494hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKcbd-HbUKwgGSkW0_aOBmxaX0qW9axw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237696271635-np8a3fjocj2fa7vqsimao9fjhm4494hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
