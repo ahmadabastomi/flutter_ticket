@@ -1,2 +1,2 @@
-# flutter-ticket
+# flutter ticket
 ticket application using flutter
