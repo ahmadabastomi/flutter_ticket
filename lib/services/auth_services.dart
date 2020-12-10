@@ -14,9 +14,27 @@ class AuthServices {
           selectedLanguage: selectedLanguage);
       await UserServices.updateUser(userModels);
       return SignInSignUpResult(userModels: userModels);
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      print("ERROR" + e.toString());
       return SignInSignUpResult(messages: e.toString());
     }
+  }
+
+  static Future<SignInSignUpResult> signIn(
+      String email, String password) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      UserModels userModels = await userCredential.user.fromFireStore();
+      return SignInSignUpResult(userModels: userModels);
+    } on FirebaseAuthException catch (e) {
+      print("ERROR" + e.toString());
+      return SignInSignUpResult(messages: e.toString() ?? "");
+    }
+  }
+
+  static Future<void> signOut() async {
+    await _auth.signOut();
   }
 }
 

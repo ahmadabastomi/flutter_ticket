@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
                   RaisedButton(
                     onPressed: () async {
                       SignInSignUpResult result = await AuthServices.signUp(
-                          "barry.allen@example.com",
+                          "barry@example.com",
                           "SuperSecretPassword!",
                           "Tomms",
                           ["action", "horror", "crime", "mystery"],
@@ -39,6 +39,24 @@ class MyApp extends StatelessWidget {
                       }
                     },
                     child: Text('SignUp'),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RaisedButton(
+                    onPressed: () async {
+                      SignInSignUpResult result = await AuthServices.signIn(
+                          "barry1@example.com",
+                          "SuperSecretPassword!");
+                      if (result == null) {
+                        print(result.messages);
+                      } else {
+                        print(result.userModels.toString());
+                      }
+                    },
+                    child: Text('SignIn'),
                   )
                 ],
               )
