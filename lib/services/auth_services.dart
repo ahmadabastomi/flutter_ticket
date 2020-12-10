@@ -15,8 +15,7 @@ class AuthServices {
       await UserServices.updateUser(userModels);
       return SignInSignUpResult(userModels: userModels);
     } on FirebaseAuthException catch (e) {
-      print("ERROR" + e.toString());
-      return SignInSignUpResult(messages: e.toString());
+      return SignInSignUpResult(messages: e.code.toString());
     }
   }
 
@@ -28,8 +27,8 @@ class AuthServices {
       UserModels userModels = await userCredential.user.fromFireStore();
       return SignInSignUpResult(userModels: userModels);
     } on FirebaseAuthException catch (e) {
-      print("ERROR" + e.toString());
-      return SignInSignUpResult(messages: e.toString() ?? "");
+      print(e.toString());
+      return SignInSignUpResult(messages: 'failed get data');
     }
   }
 

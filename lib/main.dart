@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
                       SignInSignUpResult result = await AuthServices.signIn(
                           "barry1@example.com",
                           "SuperSecretPassword!");
-                      if (result == null) {
+                      if (result.userModels == null) {
                         print(result.messages);
                       } else {
                         print(result.userModels.toString());
