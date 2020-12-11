@@ -27,8 +27,7 @@ class AuthServices {
       UserModels userModels = await userCredential.user.fromFireStore();
       return SignInSignUpResult(userModels: userModels);
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
-      return SignInSignUpResult(messages: 'failed get data');
+      return SignInSignUpResult(messages: e.code.toString());
     }
   }
 

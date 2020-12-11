@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                           ["action", "horror", "crime", "mystery"],
                           "English");
 
-                      if (result == null) {
+                      if (result.userModels == null) {
                         print(result.messages);
                       } else {
                         print(result.userModels.toString());

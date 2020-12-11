@@ -1,6 +1,6 @@
 part of 'extensions.dart';
 
-extension FirebaseUserExtension on User {
+extension FirebaseUserExtension on User { //FirebaseUser rename to User
   UserModels converToUser(
           {String name = "No Name",
           List<String> selectedGenres = const [],
@@ -11,5 +11,6 @@ extension FirebaseUserExtension on User {
           selectedGenres: selectedGenres,
           selectedLanguage: selectedLanguage,
           balance: balance);
+          
   Future<UserModels> fromFireStore() async => await UserServices.getUser(this.uid);
 }
