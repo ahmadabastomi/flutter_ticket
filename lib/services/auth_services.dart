@@ -34,6 +34,8 @@ class AuthServices {
   static Future<void> signOut() async {
     await _auth.signOut();
   }
+
+  static Stream<User> get userStream => _auth.authStateChanges();
 }
 
 class SignInSignUpResult {

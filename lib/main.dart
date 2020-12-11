@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ticket/services/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_ticket/services/services.dart';
+import 'package:flutter_ticket/ui/pages/pages.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,59 +13,9 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('SignUp'),
-        ),
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RaisedButton(
-                    onPressed: () async {
-                      SignInSignUpResult result = await AuthServices.signUp(
-                          "barry@example.com",
-                          "SuperSecretPassword!",
-                          "Tomms",
-                          ["action", "horror", "crime", "mystery"],
-                          "English");
-
-                      if (result.userModels == null) {
-                        print(result.messages);
-                      } else {
-                        print(result.userModels.toString());
-                      }
-                    },
-                    child: Text('SignUp'),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RaisedButton(
-                    onPressed: () async {
-                      SignInSignUpResult result = await AuthServices.signIn(
-                          "barry1@example.com",
-                          "SuperSecretPassword!");
-                      if (result.userModels == null) {
-                        print(result.messages);
-                      } else {
-                        print(result.userModels.toString());
-                      }
-                    },
-                    child: Text('SignIn'),
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
+    return StreamProvider.value(
+      value: AuthServices.userStream,
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: Wrapper()),
     );
   }
 }
