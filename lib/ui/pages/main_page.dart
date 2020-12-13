@@ -13,11 +13,19 @@ class _MainPageState extends State<MainPage> {
         title: Text('Main Page'),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            AuthServices.signOut();
-          },
-          child: Text('Sign Out'),
+        child: Column(
+          children: [
+            BlocBuilder<UserBloc, UserState>(
+                builder: (_, userState) => (userState is UserLoaded)
+                    ? Text(userState.userModels.name)
+                    : SizedBox()),
+            RaisedButton(
+              onPressed: () {
+                AuthServices.signOut();
+              },
+              child: Text('Sign Out'),
+            ),
+          ],
         ),
       ),
     );

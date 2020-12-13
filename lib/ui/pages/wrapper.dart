@@ -11,6 +11,7 @@ class Wrapper extends StatelessWidget {
       }
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
+        context.watch<UserBloc>().add(LoadUser(user.uid));
         prevPageEvent = GoToMainPage();
         context.watch<PageBloc>().add(prevPageEvent);
       }
