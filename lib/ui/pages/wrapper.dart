@@ -4,10 +4,22 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
-    if(user == null) {
-      return SignInPage();
-    }else {
-      return MainPage();
+    if (user == null) {
+      if (!(prevPageEvent is GoToSplashPage)) {
+        prevPageEvent = GoToSplashPage();
+        context.watch<PageBloc>().add(prevPageEvent);
+      }
+    } else {
+      if (!(prevPageEvent is GoToMainPage)) {
+        prevPageEvent = GoToMainPage();
+        context.watch<PageBloc>().add(prevPageEvent);
+      }
     }
+    return BlocBuilder<PageBloc, PageState>(
+        builder: (_, pageState) => (pageState is OnSplashPage)
+            ? SplashPage()
+            : (pageState is OnLoginPage)
+                ? SignInPage()
+                : MainPage());
   }
 }
