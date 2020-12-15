@@ -36,6 +36,9 @@ class SplashPage extends StatelessWidget {
               width: 250,
               height: 45,
               child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)
+                ),
                 onPressed: () {},
                 child: Text(
                   'Get Started',
