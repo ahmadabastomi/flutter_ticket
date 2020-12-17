@@ -26,8 +26,8 @@ class AuthServices {
           email: email, password: password);
       UserModels userModels = await userCredential.user.fromFireStore();
       return SignInSignUpResult(userModels: userModels);
-    } on FirebaseAuthException catch (e) {
-      return SignInSignUpResult(messages: e.code.toString());
+    } on FirebaseAuthException catch (_) {
+      return SignInSignUpResult(messages: 'Email dan Password yang anda masukkan tidak sesuai');
     }
   }
 
