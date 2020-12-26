@@ -6,6 +6,16 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int bottomNavbarIndex;
+  PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    bottomNavbarIndex = 0;
+    pageController = PageController(initialPage: bottomNavbarIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +29,18 @@ class _MainPageState extends State<MainPage> {
             color: Color(0xFFF6F7F9),
           ),
         ),
-        ListView(),
+        PageView(
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              bottomNavbarIndex = index;
+            });
+          },
+          children: [
+            Center(child: Text('New Movies'),),
+            Center(child: Text('My Tickets'),)
+          ],
+        ),
         createCustomBottomNavbar(),
         Align(
           alignment: Alignment.bottomCenter,
@@ -55,6 +76,47 @@ class _MainPageState extends State<MainPage> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20))),
+            child: BottomNavigationBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              selectedItemColor: mainColor,
+              unselectedItemColor: Color(0xFFE5E5E5),
+              selectedLabelStyle: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black),
+              unselectedLabelStyle: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFFE5E5E5)),
+              currentIndex: bottomNavbarIndex,
+              onTap: (index) {
+                setState(() {
+                  bottomNavbarIndex = index;
+                  pageController.jumpToPage(index);
+                });
+              },
+              items: [
+                BottomNavigationBarItem(
+                    label: 'New Movies',
+                    icon: Container(
+                      margin: EdgeInsets.only(bottom: 6),
+                      height: 20,
+                      child: Image.asset((bottomNavbarIndex == 0)
+                          ? 'assets/icons/ic_movie.png'
+                          : 'assets/icons/ic_movie_grey.png'),
+                    )),
+                BottomNavigationBarItem(
+                    label: 'My Tickets',
+                    icon: Container(
+                      margin: EdgeInsets.only(bottom: 6),
+                      height: 20,
+                      child: Image.asset((bottomNavbarIndex == 1)
+                          ? 'assets/icons/ic_tickets.png'
+                          : 'assets/icons/ic_tickets_grey.png'),
+                    )),
+              ],
+            ),
           ),
         ),
       );
