@@ -37,8 +37,10 @@ class _MainPageState extends State<MainPage> {
             });
           },
           children: [
-            Center(child: Text('New Movies'),),
-            Center(child: Text('My Tickets'),)
+            MoviePage(),
+            Center(
+              child: Text('My Tickets'),
+            )
           ],
         ),
         createCustomBottomNavbar(),
@@ -49,7 +51,10 @@ class _MainPageState extends State<MainPage> {
             child: FloatingActionButton(
               elevation: 0,
               backgroundColor: accentColor2,
-              onPressed: () {},
+              onPressed: () {
+                context.read<UserBloc>().add(SignOut());
+                AuthServices.signOut();
+              },
               child: SizedBox(
                 width: 26,
                 height: 26,
