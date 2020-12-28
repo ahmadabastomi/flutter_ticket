@@ -37,9 +37,12 @@ class SplashPage extends StatelessWidget {
               height: 45,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)
-                ),
-                onPressed: () {},
+                    borderRadius: BorderRadius.circular(8)),
+                onPressed: () {
+                  context
+                      .read<PageBloc>()
+                      .add(GoToRegistrationPage(RegistrationModels()));
+                },
                 child: Text(
                   'Get Started',
                   style: whiteTextFont.copyWith(fontSize: 16),
