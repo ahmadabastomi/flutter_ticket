@@ -67,7 +67,6 @@ class _SignInPageState extends State<SignInPage> {
                                   keyboardType: TextInputType.emailAddress,
                                   decoration: InputDecoration(
                                       labelText: 'Email Address',
-                                      hintText: 'Email Address',
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
                                           borderSide:
@@ -94,7 +93,6 @@ class _SignInPageState extends State<SignInPage> {
                                     keyboardType: TextInputType.text,
                                     decoration: InputDecoration(
                                         labelText: 'Password',
-                                        hintText: 'Password',
                                         border: OutlineInputBorder(),
                                         focusedBorder: OutlineInputBorder(
                                           borderSide:
@@ -166,7 +164,8 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            context.read<PageBloc>().add(GoToRegistrationPage(RegistrationModels()));
+                            context.read<PageBloc>().add(
+                                GoToRegistrationPage(RegistrationModels()));
                           },
                           child: Text(
                             'Sign Up',

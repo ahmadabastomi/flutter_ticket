@@ -29,28 +29,180 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       child: Scaffold(
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin.toDouble()),
-          child: ListView(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 20, bottom: 22),
-                    height: 56,
-                    child: Stack(
-                      children: [
-                        Align(alignment: Alignment.centerLeft,child: GestureDetector(
-                          onTap: () {context.read<PageBloc>().add(GoToSplashPage());},
-                          child: Icon(Icons.arrow_back,color: Colors.black,),
-                        ),),
-                      ],
+            padding: EdgeInsets.symmetric(horizontal: defaultMargin.toDouble()),
+            child: ListView(
+              children: [
+                Column(
+                  children: [
+                    //note: HEADER
+                    Container(
+                      margin: EdgeInsets.only(top: 20, bottom: 22),
+                      height: 56,
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: GestureDetector(
+                              onTap: () {
+                                context.read<PageBloc>().add(GoToSplashPage());
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Text(
+                              'Create New\n Your Account',
+                              style: blackTextFont.copyWith(fontSize: 20),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              )
-            ],
-          )
-        ),
+                    Container(
+                      width: 90,
+                      height: 104,
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 90,
+                            width: 90,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: (widget.registrationModels
+                                                .profileImage ==
+                                            null)
+                                        ? AssetImage(
+                                            'assets/icons/user_pic.png')
+                                        : FileImage(widget
+                                            .registrationModels.profileImage))),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                height: 28,
+                                width: 28,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: AssetImage((widget
+                                                    .registrationModels
+                                                    .profileImage ==
+                                                null)
+                                            ? 'assets/icons/btn_add_photo.png'
+                                            : 'assets/icons/btn_del_photo.png'))),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Theme(
+                      data: Theme.of(context)
+                          .copyWith(primaryColor: accentColor2),
+                      child: TextField(
+                        controller: nameController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Full Name',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: accentColor2)),
+                            floatingLabelBehavior:
+                                FloatingLabelBehavior.always),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Theme(
+                      data: Theme.of(context)
+                          .copyWith(primaryColor: accentColor2),
+                      child: TextField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            labelText: 'Email',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: accentColor2)),
+                            floatingLabelBehavior:
+                                FloatingLabelBehavior.always),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Theme(
+                      data: Theme.of(context)
+                          .copyWith(primaryColor: accentColor2),
+                      child: TextField(
+                        controller: passwordController,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Password',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: accentColor2)),
+                            floatingLabelBehavior:
+                                FloatingLabelBehavior.always),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Theme(
+                      data: Theme.of(context)
+                          .copyWith(primaryColor: accentColor2),
+                      child: TextField(
+                        controller: retypePasswordController,
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Confirm Password',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(6)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: accentColor2)),
+                            floatingLabelBehavior:
+                                FloatingLabelBehavior.always),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: FlatButton(
+                        onPressed: () {},
+                        height: 50,
+                        color: mainColor,
+                        shape: CircleBorder(),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          size: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            )),
       ),
     );
   }
