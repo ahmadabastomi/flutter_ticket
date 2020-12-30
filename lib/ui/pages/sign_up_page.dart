@@ -80,12 +80,22 @@ class _SignUpPageState extends State<SignUpPage> {
                                         ? AssetImage(
                                             'assets/icons/user_pic.png')
                                         : FileImage(widget
-                                            .registrationModels.profileImage))),
+                                            .registrationModels.profileImage),
+                                    fit: BoxFit.cover)),
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () async {
+                                if (widget.registrationModels.profileImage ==
+                                    null) {
+                                  widget.registrationModels.profileImage =
+                                      await getImageFromDevice();
+                                } else {
+                                  widget.registrationModels.profileImage = null;
+                                }
+                                setState(() {});
+                              },
                               child: Container(
                                 height: 28,
                                 width: 28,
@@ -188,7 +198,51 @@ class _SignUpPageState extends State<SignUpPage> {
                     Container(
                       alignment: Alignment.center,
                       child: FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if ((nameController.text.trim() == "" &&
+                              emailController.text.trim() == "" &&
+                              passwordController.text.trim() == "" &&
+                              retypePasswordController.text.trim() == "")) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message: "Inputan tidak boleh kosong",
+                            )..show(context);
+                          } else if (passwordController !=
+                              retypePasswordController) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message:
+                                  "Password dan confirmation password tidak sesuai",
+                            )..show(context);
+                          } else if (passwordController.text.length < 6) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message: "Panjang minimal password 6 character",
+                            )..show(context);
+                          } else if (!EmailValidator.validate(
+                              emailController.text)) {
+                            Flushbar(
+                              duration: Duration(milliseconds: 1500),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              backgroundColor: Color(0xFFFF5C83),
+                              message: "Format email tidak sesuai",
+                            )..show(context);
+                          } else {
+                            widget.registrationModels.name =
+                                nameController.text;
+                            widget.registrationModels.email =
+                                emailController.text;
+                            widget.registrationModels.password =
+                                passwordController.text;
+                                //TODO: Go to preference page//                          
+                          }
+                        },
                         height: 50,
                         color: mainColor,
                         shape: CircleBorder(),
