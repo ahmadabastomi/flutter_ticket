@@ -10,6 +10,7 @@ import 'package:flutter_ticket/bloc/blocs.dart';
 import 'package:flutter_ticket/models/models.dart';
 import 'package:flutter_ticket/services/services.dart';
 import 'package:flutter_ticket/shared/shared.dart';
+import 'package:flutter_ticket/ui/widgets/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

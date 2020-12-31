@@ -209,8 +209,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               backgroundColor: Color(0xFFFF5C83),
                               message: "Inputan tidak boleh kosong",
                             )..show(context);
-                          } else if (passwordController !=
-                              retypePasswordController) {
+                          } else if (passwordController.text !=
+                              retypePasswordController.text) {
                             Flushbar(
                               duration: Duration(milliseconds: 1500),
                               flushbarPosition: FlushbarPosition.TOP,
@@ -240,7 +240,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                 emailController.text;
                             widget.registrationModels.password =
                                 passwordController.text;
-                                //TODO: Go to preference page//                          
+
+                            context.read<PageBloc>().add(
+                                GoToPreferencePage(widget.registrationModels));
                           }
                         },
                         height: 50,
