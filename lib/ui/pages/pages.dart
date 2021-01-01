@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:email_validator/email_validator.dart';
@@ -11,7 +10,6 @@ import 'package:flutter_ticket/models/models.dart';
 import 'package:flutter_ticket/services/services.dart';
 import 'package:flutter_ticket/shared/shared.dart';
 import 'package:flutter_ticket/ui/widgets/widgets.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -26,9 +24,4 @@ part 'sign_up_page.dart';
 part 'preference_page.dart';
 part 'account_confirmation_page.dart';
 
-Future<File> getImageFromDevice() async {
-  final _picker = ImagePicker();
-  final image = await _picker.getImage(source: ImageSource.gallery);
-  final File fileImage = File(image.path);
-  return fileImage;
-}
+
