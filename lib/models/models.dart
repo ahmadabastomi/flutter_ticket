@@ -5,3 +5,4 @@ import 'package:flutter/material.dart';
 part 'user_models.dart';
 part 'registration_models.dart';
 part 'movie_models.dart';
+part 'promo_models.dart';
