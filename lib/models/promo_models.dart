@@ -11,4 +11,8 @@ class PromoModels extends Equatable {
   List<Object> get props => [title, subtitle, discount];
 }
 
-List<PromoModels> dummyPromos = [];
+List<PromoModels> dummyPromos = [
+  PromoModels(title: "Student Holyday", subtitle: "Maximal only for two people", discount: 50),
+  PromoModels(title: "Family Club", subtitle: "Minimal for three members", discount: 70),
+  PromoModels(title: "Subscription Promo ", subtitle: "Min. one year", discount: 40)
+];

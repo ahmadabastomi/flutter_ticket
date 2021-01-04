@@ -203,9 +203,16 @@ class MoviePage extends StatelessWidget {
                 fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBox(
-          height: 100
-        )
+        Column(
+          children: dummyPromos
+              .map((e) => Padding(
+                    padding: EdgeInsets.fromLTRB(defaultMargin.toDouble(), 13,
+                        defaultMargin.toDouble(), 16),
+                    child: PromoCard(e),
+                  ))
+              .toList(),
+        ),
+        SizedBox(height: 100)
       ],
     );
   }
