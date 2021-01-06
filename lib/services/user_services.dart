@@ -11,7 +11,7 @@ class UserServices {
         'name': userModels.name,
         'profilePicture': userModels.profilePicture ?? "",
         'selectedGenres': userModels.selectedGenres,
-        'selectedLanguages': userModels.selectedLanguage,
+        'selectedLanguage': userModels.selectedLanguage,
         'balance': userModels.balance
       });
     } catch (e) {
