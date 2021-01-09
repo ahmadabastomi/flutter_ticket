@@ -63,7 +63,7 @@ class MovieDetailPage extends StatelessWidget {
                                     Container(
                                       alignment: Alignment.topLeft,
                                       margin:
-                                          EdgeInsets.only(top: 20, left: 28),
+                                          EdgeInsets.only(top: 16, left: defaultMargin.toDouble()),
                                       child: GestureDetector(
                                         onTap: () {
                                           context
@@ -181,7 +181,11 @@ class MovieDetailPage extends StatelessWidget {
                                     width: 250,
                                     height: 45,
                                     child: RaisedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        context.read<PageBloc>().add(
+                                            GoToSelectSchedulePage(
+                                                movieDetailModels));
+                                      },
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(8)),

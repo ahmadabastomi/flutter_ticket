@@ -42,3 +42,10 @@ class OnMovieDetailPage extends PageState {
   @override
   List<Object> get props => [movieModels];
 }
+
+class OnSelectSchedulePage extends PageState {
+  final MovieDetailModels movieDetailModels;
+  OnSelectSchedulePage(this.movieDetailModels);
+  @override
+  List<Object> get props => [movieDetailModels];
+}

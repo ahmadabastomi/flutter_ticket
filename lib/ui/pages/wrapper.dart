@@ -30,6 +30,9 @@ class Wrapper extends StatelessWidget {
                                 pageState.registrationModels)
                             : (pageState is OnMovieDetailPage)
                                 ? MovieDetailPage(pageState.movieModels)
-                                : MainPage());
+                                : (pageState is OnSelectSchedulePage)
+                                    ? SelectSchedulePage(
+                                        pageState.movieDetailModels)
+                                    : MainPage());
   }
 }

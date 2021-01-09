@@ -40,3 +40,10 @@ class GoToMovieDetailPage extends PageEvent {
   @override
   List<Object> get props => [movieModels];
 }
+
+class GoToSelectSchedulePage extends PageEvent {
+  final MovieDetailModels movieDetailModels;
+  GoToSelectSchedulePage(this.movieDetailModels);
+  @override
+  List<Object> get props => [movieDetailModels];
+}
