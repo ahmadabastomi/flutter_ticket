@@ -10,6 +10,9 @@ class SelectSchedulePage extends StatefulWidget {
 class _SelectSchedulePageState extends State<SelectSchedulePage> {
   List<DateTime> dates;
   DateTime selectedDate;
+  int selectedTime;
+  TheaterModels selectedTheater;
+  bool isValid = false;
 
   @override
   void initState() {
@@ -84,12 +87,81 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                       ),
                     ),
                   ),
+                ),
+                //note: Choose Theater and Time
+                generateTheaterTimeTable(),
+                //note: Next Button
+                SizedBox(
+                  height: 10,
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    elevation: 0,
+                    backgroundColor: (isValid) ? mainColor : Color(0xFFE4E4E4),
+                    child: Icon(Icons.arrow_forward,
+                        size: 24,
+                        color: (isValid) ? Colors.white : Color(0xFFBEBEBE)),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
                 )
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Column generateTheaterTimeTable() {
+    List<int> schedule = List.generate(7, (index) => 10 + index * 2);
+    List<Widget> widgets = [];
+    for (var theater in dummyTheaters) {
+      widgets.add(Container(
+        margin: EdgeInsets.fromLTRB(
+            defaultMargin.toDouble(), 0, defaultMargin.toDouble(), 16),
+        child: Text(
+          theater.name,
+          style: blackTextFont.copyWith(fontSize: 20),
+        ),
+      ));
+      widgets.add(Container(
+          height: 50,
+          margin: EdgeInsets.only(bottom: 20),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: schedule.length,
+            itemBuilder: (_, index) => Container(
+              margin: EdgeInsets.only(
+                  left: (index == 0) ? defaultMargin.toDouble() : 0,
+                  right: (schedule.length - 1 == index)
+                      ? defaultMargin.toDouble()
+                      : 16),
+              child: SelectableBox(
+                "${schedule[index]}:00",
+                height: 50,
+                width: 90,
+                isSelected: (selectedTheater == theater &&
+                    selectedTime == schedule[index]),
+                isEnabled: (schedule[index] > DateTime.now().hour ||
+                    selectedDate.day != DateTime.now().day),
+                onTap: () {
+                  setState(() {
+                    selectedTheater = theater;
+                    selectedTime = schedule[index];
+                    isValid = true;
+                  });
+                },
+              ),
+            ),
+          )));
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: widgets,
     );
   }
 }
