@@ -4,8 +4,13 @@ class RatingStarts extends StatelessWidget {
   final double voteAverage;
   final double starSize;
   final double fontSize;
+  final Color labelColor;
 
-  RatingStarts({this.voteAverage = 0, this.starSize = 20, this.fontSize = 12});
+  RatingStarts(
+      {this.voteAverage = 0,
+      this.starSize = 20,
+      this.fontSize = 12,
+      this.labelColor = Colors.white});
   @override
   Widget build(BuildContext context) {
     int n = (voteAverage / 2).round();
@@ -22,7 +27,7 @@ class RatingStarts extends StatelessWidget {
     widgets.add(Text(
       "$voteAverage/10",
       style: whiteNumberFont.copyWith(
-          fontWeight: FontWeight.w300, fontSize: fontSize),
+          fontWeight: FontWeight.w300, fontSize: fontSize, color: labelColor),
     ));
 
     return Row(

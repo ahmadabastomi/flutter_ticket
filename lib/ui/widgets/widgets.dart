@@ -9,3 +9,4 @@ part 'rating_stars.dart';
 part 'browse_button.dart';
 part 'comming_soon_card.dart';
 part 'promo_card.dart';
+part 'credit_card.dart';

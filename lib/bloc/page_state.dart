@@ -18,14 +18,27 @@ class OnMainPage extends PageState {}
 class OnRegistrationPage extends PageState {
   final RegistrationModels registrationModels;
   OnRegistrationPage(this.registrationModels);
+  @override
+  List<Object> get props => [registrationModels];
 }
 
 class OnPreferencePage extends PageState {
   final RegistrationModels registrationModels;
   OnPreferencePage(this.registrationModels);
+  @override
+  List<Object> get props => [registrationModels];
 }
 
 class OnAccountConfirmationPage extends PageState {
   final RegistrationModels registrationModels;
   OnAccountConfirmationPage(this.registrationModels);
+  @override
+  List<Object> get props => [registrationModels];
+}
+
+class OnMovieDetailPage extends PageState {
+  final MovieModels movieModels;
+  OnMovieDetailPage(this.movieModels);
+  @override
+  List<Object> get props => [movieModels];
 }

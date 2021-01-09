@@ -26,6 +26,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnPreferencePage(event.registrationModels);
     } else if (event is GoToAccountConfirmationPage) {
       yield OnAccountConfirmationPage(event.registrationModels);
+    } else if (event is GoToMovieDetailPage) {
+      yield OnMovieDetailPage(event.movieModels);
     }
   }
 }

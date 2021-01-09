@@ -118,7 +118,14 @@ class MoviePage extends StatelessWidget {
                             right: (index == movies.length - 1)
                                 ? defaultMargin.toDouble()
                                 : 16),
-                        child: MovieCard(movies[index]),
+                        child: MovieCard(
+                          movies[index],
+                          onTap: () {
+                            context
+                                .read<PageBloc>()
+                                .add(GoToMovieDetailPage(movies[index]));
+                          },
+                        ),
                       ));
             } else {
               return SpinKitFadingCircle(
