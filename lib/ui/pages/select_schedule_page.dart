@@ -41,7 +41,7 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 Container(
                   alignment: Alignment.topLeft,
                   margin:
-                      EdgeInsets.only(top: 16, left: defaultMargin.toDouble()),
+                      EdgeInsets.only(top: 36, left: defaultMargin.toDouble()),
                   child: GestureDetector(
                     onTap: () {
                       context
@@ -96,13 +96,32 @@ class _SelectSchedulePageState extends State<SelectSchedulePage> {
                 ),
                 Align(
                   alignment: Alignment.topCenter,
-                  child: FloatingActionButton(
-                    onPressed: () {},
-                    elevation: 0,
-                    backgroundColor: (isValid) ? mainColor : Color(0xFFE4E4E4),
-                    child: Icon(Icons.arrow_forward,
-                        size: 24,
-                        color: (isValid) ? Colors.white : Color(0xFFBEBEBE)),
+                  child: BlocBuilder<UserBloc, UserState>(
+                    builder: (_, userState) => FloatingActionButton(
+                      onPressed: () {
+                        if (isValid) {
+                          context.read<PageBloc>().add(GoToSelectSeatPage(
+                              TicketModels(
+                                  widget.movieDetailModels,
+                                  selectedTheater,
+                                  DateTime(
+                                      selectedDate.year,
+                                      selectedDate.month,
+                                      selectedDate.day,
+                                      selectedTime),
+                                  randomAlphaNumeric(12).toUpperCase(),
+                                  null,
+                                  (userState as UserLoaded).userModels.name,
+                                  null)));
+                        }
+                      },
+                      elevation: 0,
+                      backgroundColor:
+                          (isValid) ? mainColor : Color(0xFFE4E4E4),
+                      child: Icon(Icons.arrow_forward,
+                          size: 24,
+                          color: (isValid) ? Colors.white : Color(0xFFBEBEBE)),
+                    ),
                   ),
                 ),
                 SizedBox(

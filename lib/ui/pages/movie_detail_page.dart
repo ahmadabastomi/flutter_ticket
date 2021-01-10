@@ -63,7 +63,7 @@ class MovieDetailPage extends StatelessWidget {
                                     Container(
                                       alignment: Alignment.topLeft,
                                       margin:
-                                          EdgeInsets.only(top: 16, left: defaultMargin.toDouble()),
+                                          EdgeInsets.only(top: 36, left: defaultMargin.toDouble()),
                                       child: GestureDetector(
                                         onTap: () {
                                           context

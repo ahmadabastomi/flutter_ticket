@@ -30,6 +30,8 @@ class PageBloc extends Bloc<PageEvent, PageState> {
       yield OnMovieDetailPage(event.movieModels);
     } else if (event is GoToSelectSchedulePage) {
       yield OnSelectSchedulePage(event.movieDetailModels);
+    } else if (event is GoToSelectSeatPage) {
+      yield OnSelectSeatPage(event.ticketModels);
     }
   }
 }
