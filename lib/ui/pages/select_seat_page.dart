@@ -99,7 +99,13 @@ class _SelectSeatPageState extends State<SelectSeatPage> {
             Align(
               alignment: Alignment.topCenter,
               child: FloatingActionButton(
-                onPressed: () {},
+                onPressed: (selectedSeats.length > 0)
+                    ? () {
+                        context.read<PageBloc>().add(GoToCheckoutPage(widget
+                            .ticketModels
+                            .copyWith(seats: selectedSeats)));
+                      }
+                    : null,
                 elevation: 0,
                 backgroundColor:
                     (selectedSeats.length > 0) ? mainColor : Color(0xFFE4E4E4),

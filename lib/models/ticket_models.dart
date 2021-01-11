@@ -11,7 +11,7 @@ class TicketModels extends Equatable {
   TicketModels(this.movieDetailModels, this.theaterModels, this.time,
       this.bookingCode, this.seats, this.name, this.totalPrice);
 
-  TicketModels copyWith(
+  TicketModels copyWith({
     MovieDetailModels movieDetailModels,
     TheaterModels theaterModels,
     DateTime time,
@@ -19,10 +19,10 @@ class TicketModels extends Equatable {
     List<String> seats,
     String name,
     int totalPrice,
-  ) =>
+  }) =>
       TicketModels(
           movieDetailModels ?? this.movieDetailModels,
-          theaterModels ?? theaterModels,
+          theaterModels ?? this.theaterModels,
           time ?? this.time,
           bookingCode ?? this.bookingCode,
           seats ?? this.seats,

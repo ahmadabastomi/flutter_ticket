@@ -56,3 +56,10 @@ class OnSelectSeatPage extends PageState {
   @override
   List<Object> get props => [ticketModels];
 }
+
+class OnCheckoutPage extends PageState {
+  final TicketModels ticketModels;
+  OnCheckoutPage(this.ticketModels);
+  @override
+  List<Object> get props => [ticketModels];
+}
