@@ -10,3 +10,4 @@ part 'movie_detail_models.dart';
 part 'credit_models.dart';
 part 'theater_models.dart';
 part 'ticket_models.dart';
+part 'ticket_transaction_models.dart';
