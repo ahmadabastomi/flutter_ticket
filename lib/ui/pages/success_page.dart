@@ -53,14 +53,18 @@ class _SuccessPageState extends State<SuccessPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
-                                        'assets/icons/ticket_done.png'),
+                                        (widget.ticketModels != null)
+                                            ? 'assets/icons/ticket_done.png'
+                                            : 'assets/icons/top_up_done.png'),
                                     fit: BoxFit.cover)),
                           ),
                           SizedBox(
                             height: 89,
                           ),
                           Text(
-                            'Happy Watching',
+                            (widget.ticketModels != null)
+                                ? 'Happy Watching'
+                                : 'Emmm Yummy',
                             style: blackTextFont.copyWith(
                                 fontSize: 20, fontWeight: FontWeight.w600),
                             textAlign: TextAlign.center,
@@ -69,7 +73,9 @@ class _SuccessPageState extends State<SuccessPage> {
                             height: 16,
                           ),
                           Text(
-                            'You have successfully\n bought the ticket',
+                            (widget.ticketModels != null)
+                                ? 'You have successfully\n bought the ticket'
+                                : 'You have successfully\n topup the wallet',
                             style: greyTextFont.copyWith(
                                 fontSize: 16, fontWeight: FontWeight.w300),
                             textAlign: TextAlign.center,
@@ -81,12 +87,20 @@ class _SuccessPageState extends State<SuccessPage> {
                             width: 250,
                             height: 45,
                             child: RaisedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if(widget.ticketModels != null){
+                                  //ticket
+                                }else {
+                                  //topup
+                                }
+                              },
                               color: mainColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8)),
                               child: Text(
-                                'My Tickets',
+                                (widget.ticketModels != null)
+                                    ? 'My Tickets'
+                                    : 'My Wallet',
                                 style: whiteTextFont.copyWith(fontSize: 16),
                               ),
                             ),
