@@ -26,14 +26,14 @@ class TicketServices {
     List<TicketModels> tickets = [];
 
     for (var document in documents) {
-      MovieDetailModels movieDetailModels =
-          await MovieServices.getDetails(document.data()['movieID']);
+      MovieDetailModels movieDetailModels = await MovieServices.getDetails(null,
+          movieID: document.data()['movieID']);
       tickets.add(TicketModels(
           movieDetailModels,
           TheaterModels(document.data()['theaterName']),
-          document.data()['time'],
+          DateTime.fromMillisecondsSinceEpoch(document.data()['time']),
           document.data()['bookingCode'],
-          document.data()['seats'],
+          document.data()['seats'].toString().split(','),
           document.data()['name'],
           document.data()['totalPrice']));
     }
