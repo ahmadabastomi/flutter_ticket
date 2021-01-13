@@ -63,3 +63,13 @@ class OnCheckoutPage extends PageState {
   @override
   List<Object> get props => [ticketModels];
 }
+
+class OnSuccesspage extends PageState {
+  final TicketModels ticketModels;
+  final TicketTransactionModels ticketTransactionModels;
+
+  OnSuccesspage(this.ticketModels,this.ticketTransactionModels);
+
+  @override
+  List<Object> get props => [ticketModels,ticketTransactionModels];
+}

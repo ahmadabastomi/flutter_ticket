@@ -344,9 +344,33 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                           borderRadius:
                                               BorderRadius.circular(8)),
                                       onPressed: () {
-                                        if(totalPrice <= (userState as UserLoaded).userModels.balance){
-                                          //uang cukup
-                                        }else {
+                                        if (totalPrice <=
+                                            (userState as UserLoaded)
+                                                .userModels
+                                                .balance) {
+                                          TicketTransactionModels transaction =
+                                              TicketTransactionModels(
+                                                  userID:
+                                                      (userState as UserLoaded)
+                                                          .userModels
+                                                          .id,
+                                                  title: widget.ticketModels
+                                                      .movieDetailModels.title,
+                                                  subtitle: widget.ticketModels
+                                                      .theaterModels.name,
+                                                  time: DateTime.now(),
+                                                  amount: totalPrice,
+                                                  picture: widget
+                                                      .ticketModels
+                                                      .movieDetailModels
+                                                      .posterPath);
+
+                                          context.read<PageBloc>().add(
+                                              GoToSuccesspage(
+                                                  widget.ticketModels.copyWith(
+                                                      totalPrice: totalPrice),
+                                                  transaction));
+                                        } else {
                                           //uang tidak cukup
                                         }
                                       },

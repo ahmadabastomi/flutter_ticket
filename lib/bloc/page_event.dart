@@ -61,3 +61,13 @@ class GoToCheckoutPage extends PageEvent {
   @override
   List<Object> get props => [ticketModels];
 }
+
+class GoToSuccesspage extends PageEvent {
+  final TicketModels ticketModels;
+  final TicketTransactionModels ticketTransactionModels;
+
+  GoToSuccesspage(this.ticketModels, this.ticketTransactionModels);
+
+  @override
+  List<Object> get props => [ticketModels, ticketTransactionModels];
+}
