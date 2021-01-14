@@ -163,16 +163,25 @@ class TicketViewer extends StatelessWidget {
           margin: EdgeInsets.only(top: (index == 0) ? 133 : 20),
           child: Row(
             children: [
-              Container(
-                width: 70,
-                height: 90,
-                margin: EdgeInsets.only(right: 16),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(imageBaseURL +
-                            "w154" +
-                            sortedTickets[index].movieDetailModels.posterPath),
-                        fit: BoxFit.fill)),
+              GestureDetector(
+                onTap: () {
+                  context
+                      .read<PageBloc>()
+                      .add(GoToTicketDetailPage(sortedTickets[index]));
+                },
+                child: Container(
+                  width: 70,
+                  height: 90,
+                  margin: EdgeInsets.only(right: 16),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(imageBaseURL +
+                              "w154" +
+                              sortedTickets[index]
+                                  .movieDetailModels
+                                  .posterPath),
+                          fit: BoxFit.fill)),
+                ),
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width -

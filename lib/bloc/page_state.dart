@@ -68,8 +68,15 @@ class OnSuccesspage extends PageState {
   final TicketModels ticketModels;
   final TicketTransactionModels ticketTransactionModels;
 
-  OnSuccesspage(this.ticketModels,this.ticketTransactionModels);
+  OnSuccesspage(this.ticketModels, this.ticketTransactionModels);
 
   @override
-  List<Object> get props => [ticketModels,ticketTransactionModels];
+  List<Object> get props => [ticketModels, ticketTransactionModels];
+}
+
+class OnTicketDetailPage extends PageState {
+  final TicketModels ticketModels;
+  OnTicketDetailPage(this.ticketModels);
+  @override
+  List<Object> get props => [ticketModels];
 }
