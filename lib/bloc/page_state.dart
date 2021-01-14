@@ -80,3 +80,5 @@ class OnTicketDetailPage extends PageState {
   @override
   List<Object> get props => [ticketModels];
 }
+
+class OnProfilePage extends PageState {}

@@ -48,6 +48,9 @@ class Wrapper extends StatelessWidget {
                                                         is OnTicketDetailPage)
                                                     ? TicketDetailPage(
                                                         pageState.ticketModels)
-                                                    : MainPage());
+                                                    : (pageState
+                                                            is OnProfilePage)
+                                                        ? ProfilePage()
+                                                        : MainPage());
   }
 }
