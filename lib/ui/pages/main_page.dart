@@ -50,8 +50,7 @@ class _MainPageState extends State<MainPage> {
               elevation: 0,
               backgroundColor: accentColor2,
               onPressed: () {
-                context.read<UserBloc>().add(SignOut());
-                AuthServices.signOut();
+                context.read<PageBloc>().add(GoToTopUpPage(GoToMainPage()));
               },
               child: SizedBox(
                 width: 26,

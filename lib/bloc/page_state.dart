@@ -82,3 +82,9 @@ class OnTicketDetailPage extends PageState {
 }
 
 class OnProfilePage extends PageState {}
+
+class OnTopUpPage extends PageState {
+  final PageEvent pageEvent;
+  OnTopUpPage(this.pageEvent);
+  List<Object> get props => [pageEvent];
+}

@@ -80,3 +80,8 @@ class GoToTicketDetailPage extends PageEvent {
 }
 
 class GoToProfilePage extends PageEvent {}
+
+class GoToTopUpPage extends PageEvent {
+  final PageEvent pageEvent;
+  GoToTopUpPage(this.pageEvent);
+}

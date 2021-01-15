@@ -30,44 +30,48 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              BlocBuilder<UserBloc, UserState>(
-                builder: (_, userState) => Center(
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 120,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: (userState as UserLoaded)
-                                            .userModels
-                                            .profilePicture ==
-                                        ""
-                                    ? AssetImage('assets/icons/user_pic.png')
-                                    : NetworkImage((userState as UserLoaded)
-                                        .userModels
-                                        .profilePicture),
-                                fit: BoxFit.cover)),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        (userState as UserLoaded).userModels.name,
-                        style: blackTextFont.copyWith(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text((userState as UserLoaded).userModels.email,
-                          style: greyTextFont.copyWith(
-                              fontSize: 16, fontWeight: FontWeight.w400))
-                    ],
-                  ),
-                ),
-              ),
+              BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
+                if (userState is UserLoaded) {
+                  return Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 120,
+                          height: 120,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: userState.userModels.profilePicture ==
+                                          ""
+                                      ? AssetImage('assets/icons/user_pic.png')
+                                      : NetworkImage(
+                                          userState.userModels.profilePicture),
+                                  fit: BoxFit.cover)),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          userState.userModels.name,
+                          style: blackTextFont.copyWith(
+                              fontSize: 18, fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(userState.userModels.email,
+                            style: greyTextFont.copyWith(
+                                fontSize: 16, fontWeight: FontWeight.w400))
+                      ],
+                    ),
+                  );
+                } else {
+                  return SpinKitFadingCircle(
+                    color: mainColor,
+                    size: 50,
+                  );
+                }
+              }),
               SizedBox(
                 height: 30,
               ),
@@ -230,7 +234,10 @@ class ProfilePage extends StatelessWidget {
                   width: 250,
                   height: 45,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<UserBloc>().add(SignOut());
+                      AuthServices.signOut();
+                    },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                     color: mainColor,
