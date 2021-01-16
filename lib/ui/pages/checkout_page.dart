@@ -371,7 +371,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                                       totalPrice: totalPrice),
                                                   transaction));
                                         } else {
-                                          //uang tidak cukup
+                                          context.read<PageBloc>().add(
+                                              GoToTopUpPage(GoToCheckoutPage(
+                                                  widget.ticketModels)));
                                         }
                                       },
                                       color: (totalPrice <=

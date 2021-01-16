@@ -116,14 +116,29 @@ class _TopUpPageState extends State<TopUpPage> {
                     BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                   if (userState is UserLoaded) {
                     return RaisedButton(
-                      onPressed: () {},
+                      onPressed: (selectedAmount > 0)
+                          ? () {
+                              context.read<PageBloc>().add(GoToSuccesspage(
+                                  null,
+                                  TicketTransactionModels(
+                                      userID: userState.userModels.id,
+                                      title: "Top Up Wallet",
+                                      subtitle:
+                                          "${DateTime.now().fullDayName} ${DateTime.now().day} ${DateTime.now().fullMonthName} ${DateTime.now().year}",
+                                      time: DateTime.now(),
+                                      amount: selectedAmount)));
+                            }
+                          : null,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),
-                      color: accentColor3,
+                      disabledColor: Color(0xFF3E9D9D),
+                      color: mainColor,
                       child: Text(
                         'Top Up Now',
-                        style: whiteTextFont.copyWith(fontSize: 16),
+                        style: whiteTextFont.copyWith(fontSize: 16,color: (selectedAmount > 0)
+                          ? Colors.white
+                          : Color(0xFFBEBEBE),),
                       ),
                     );
                   } else {

@@ -22,11 +22,18 @@ class _SuccessPageState extends State<SuccessPage> {
         widget.ticketTransactionModels);
   }
 
-  Future<void> processingTopUp() async {}
+  Future<void> processingTopUp(BuildContext context) async {
+    Provider.of<UserBloc>(context, listen: false)
+        .add(TopUp(widget.ticketTransactionModels.amount));
+    await TicketTransactionServices.saveTransaction(
+        widget.ticketTransactionModels);
+  }
+
   @override
   void initState() {
-    handleTicketOrder = processingTicketOrder(context);
-    handleTopUp = processingTopUp();
+    handleTicketOrder =
+        (widget.ticketModels != null) ? processingTicketOrder(context) : null;
+    handleTopUp = (widget.ticketModels == null)?processingTopUp(context): null;
     super.initState();
   }
 
@@ -88,9 +95,9 @@ class _SuccessPageState extends State<SuccessPage> {
                             height: 45,
                             child: RaisedButton(
                               onPressed: () {
-                                if(widget.ticketModels != null){
+                                if (widget.ticketModels != null) {
                                   //ticket
-                                }else {
+                                } else {
                                   //topup
                                 }
                               },

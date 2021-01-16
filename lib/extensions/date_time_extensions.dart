@@ -26,4 +26,69 @@ extension DateTimeExtensions on DateTime {
         return 'Sun';
     }
   }
+
+  String get fullDayName {
+    switch (this.weekday) {
+      case 1:
+        return 'Monday';
+        break;
+      case 2:
+        return 'Tuesday';
+        break;
+      case 3:
+        return 'Wednesday';
+        break;
+      case 4:
+        return 'Thursday';
+        break;
+      case 5:
+        return 'Friday';
+        break;
+      case 6:
+        return 'Saturday';
+        break;
+      default:
+        return 'Sunday';
+    }
+  }
+
+  String get fullMonthName {
+    switch (this.month) {
+      case 1:
+        return 'January';
+        break;
+      case 2:
+        return 'February';
+        break;
+      case 3:
+        return 'March';
+        break;
+      case 4:
+        return 'April';
+        break;
+      case 5:
+        return 'May';
+        break;
+      case 6:
+        return 'June';
+        break;
+      case 7:
+        return 'July';
+        break;
+      case 8:
+        return 'August';
+        break;
+      case 9:
+        return 'September';
+        break;
+      case 10:
+        return 'October';
+        break;
+      case 11:
+        return 'November';
+        break;
+      default:
+        return 'December';
+    }
+  }
 }
