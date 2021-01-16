@@ -88,3 +88,9 @@ class OnTopUpPage extends PageState {
   OnTopUpPage(this.pageEvent);
   List<Object> get props => [pageEvent];
 }
+
+class OnWalletPage extends PageState {
+  final PageEvent pageEvent;
+  OnWalletPage(this.pageEvent);
+  List<Object> get props => [pageEvent];
+}

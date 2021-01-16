@@ -9,7 +9,7 @@ class TicketTransactionServices {
       'úserID': ticketTransactionModels.userID,
       'title': ticketTransactionModels.title,
       'subtitle': ticketTransactionModels.subtitle,
-      'time': ticketTransactionModels.time,
+      'time': ticketTransactionModels.time.millisecondsSinceEpoch,
       'amount': ticketTransactionModels.amount,
       'picture': ticketTransactionModels.picture
     });
@@ -19,7 +19,7 @@ class TicketTransactionServices {
       String userID) async {
     QuerySnapshot snapshot = await transactionCollection.get();
     var documents =
-        snapshot.docs.where((doc) => doc.data()['userID'] == userID);
+        snapshot.docs;
 
     return documents
         .map((e) => TicketTransactionModels(

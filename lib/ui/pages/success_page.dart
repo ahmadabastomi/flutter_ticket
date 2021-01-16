@@ -96,9 +96,9 @@ class _SuccessPageState extends State<SuccessPage> {
                             child: RaisedButton(
                               onPressed: () {
                                 if (widget.ticketModels != null) {
-                                  //ticket
+                                  
                                 } else {
-                                  //topup
+                                  context.read<PageBloc>().add(GoToWalletPage(GoToMainPage()));
                                 }
                               },
                               color: mainColor,

@@ -108,23 +108,30 @@ class ProfilePage extends StatelessWidget {
                     SizedBox(
                       height: 15,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 24,
-                          height: 24,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/icons/my_wallet.png'),
-                                  fit: BoxFit.cover)),
-                        ),
-                        Text('My Wallet',
-                            style: blackTextFont.copyWith(
-                                fontSize: 16, fontWeight: FontWeight.w600))
-                      ],
+                    GestureDetector(
+                      onTap: () {
+                        context
+                            .read<PageBloc>()
+                            .add(GoToWalletPage(GoToProfilePage()));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 24,
+                            height: 24,
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/icons/my_wallet.png'),
+                                    fit: BoxFit.cover)),
+                          ),
+                          Text('My Wallet',
+                              style: blackTextFont.copyWith(
+                                  fontSize: 16, fontWeight: FontWeight.w600))
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 10,
