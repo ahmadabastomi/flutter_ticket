@@ -91,3 +91,5 @@ class GoToWalletPage extends PageEvent {
   GoToWalletPage(this.pageEvent);
   List<Object> get props => [pageEvent];
 }
+
+class GoToEditProfilePage extends PageEvent {}

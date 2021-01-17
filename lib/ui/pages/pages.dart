@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:email_validator/email_validator.dart';
@@ -37,5 +38,6 @@ part 'ticket_detail_page.dart';
 part 'profile_page.dart';
 part 'top_up_page.dart';
 part 'wallet_page.dart';
+part 'edit_profile_page.dart';
 
 

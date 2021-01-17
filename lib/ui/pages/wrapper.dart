@@ -61,6 +61,9 @@ class Wrapper extends StatelessWidget {
                                                                 ? WalletPage(
                                                                     pageState
                                                                         .pageEvent)
-                                                                : MainPage());
+                                                                : (pageState
+                                                                        is OnEditProfilePage)
+                                                                    ? EditProfilePage()
+                                                                    : MainPage());
   }
 }

@@ -79,23 +79,28 @@ class ProfilePage extends StatelessWidget {
                 margin: EdgeInsets.only(left: defaultMargin.toDouble()),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 24,
-                          height: 24,
-                          margin: EdgeInsets.only(right: 10),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/icons/edit_profile.png'),
-                                  fit: BoxFit.cover)),
-                        ),
-                        Text('Edit Profile',
-                            style: blackTextFont.copyWith(
-                                fontSize: 16, fontWeight: FontWeight.w600))
-                      ],
+                    GestureDetector(
+                      onTap: () {
+                        context.read<PageBloc>().add(GoToEditProfilePage());
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 24,
+                            height: 24,
+                            margin: EdgeInsets.only(right: 10),
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        'assets/icons/edit_profile.png'),
+                                    fit: BoxFit.cover)),
+                          ),
+                          Text('Edit Profile',
+                              style: blackTextFont.copyWith(
+                                  fontSize: 16, fontWeight: FontWeight.w600))
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 10,

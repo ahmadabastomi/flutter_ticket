@@ -94,3 +94,5 @@ class OnWalletPage extends PageState {
   OnWalletPage(this.pageEvent);
   List<Object> get props => [pageEvent];
 }
+
+class OnEditProfilePage extends PageState {}
