@@ -13,7 +13,12 @@ class OnSplashPage extends PageState {}
 
 class OnLoginPage extends PageState {}
 
-class OnMainPage extends PageState {}
+class OnMainPage extends PageState {
+  final int bottomNavbarIndex;
+  final bool isExpiredTicket;
+  OnMainPage({this.bottomNavbarIndex,this.isExpiredTicket});
+  List<Object> get props => [bottomNavbarIndex,isExpiredTicket];
+}
 
 class OnRegistrationPage extends PageState {
   final RegistrationModels registrationModels;

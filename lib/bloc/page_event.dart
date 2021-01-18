@@ -11,7 +11,12 @@ class GoToSplashPage extends PageEvent {}
 
 class GoToLoginPage extends PageEvent {}
 
-class GoToMainPage extends PageEvent {}
+class GoToMainPage extends PageEvent {
+  final int bottomNavbarIndex;
+  final bool isExpiredTicket;
+  GoToMainPage({this.bottomNavbarIndex, this.isExpiredTicket});
+  List<Object> get props => [bottomNavbarIndex, isExpiredTicket];
+}
 
 class GoToRegistrationPage extends PageEvent {
   final RegistrationModels registrationModels;

@@ -96,7 +96,7 @@ class _SuccessPageState extends State<SuccessPage> {
                             child: RaisedButton(
                               onPressed: () {
                                 if (widget.ticketModels != null) {
-                                  
+                                  context.read<PageBloc>().add(GoToMainPage(bottomNavbarIndex: 1));
                                 } else {
                                   context.read<PageBloc>().add(GoToWalletPage(GoToMainPage()));
                                 }

@@ -7,7 +7,9 @@ class TicketDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        context.read<PageBloc>().add(GoToMainPage());
+        context.read<PageBloc>().add(GoToMainPage(
+            bottomNavbarIndex: 1,
+            isExpiredTicket: ticketModels.time.isBefore(DateTime.now())));
         return;
       },
       child: Scaffold(
@@ -30,7 +32,10 @@ class TicketDetailPage extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: GestureDetector(
                             onTap: () {
-                              context.read<PageBloc>().add(GoToMainPage());
+                              context.read<PageBloc>().add(GoToMainPage(
+                                  bottomNavbarIndex: 1,
+                                  isExpiredTicket: ticketModels.time
+                                      .isBefore(DateTime.now())));
                             },
                             child: Icon(
                               Icons.arrow_back,

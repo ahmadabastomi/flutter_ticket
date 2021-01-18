@@ -19,7 +19,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     } else if (event is GoToLoginPage) {
       yield OnLoginPage();
     } else if (event is GoToMainPage) {
-      yield OnMainPage();
+      yield OnMainPage(bottomNavbarIndex: event.bottomNavbarIndex,isExpiredTicket: event.isExpiredTicket);
     } else if (event is GoToRegistrationPage) {
       yield OnRegistrationPage(event.registrationModels);
     } else if (event is GoToPreferencePage) {

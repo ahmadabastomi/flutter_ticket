@@ -79,14 +79,21 @@ class MoviePage extends StatelessWidget {
                           overflow: TextOverflow.clip,
                         ),
                       ),
-                      Text(
-                        NumberFormat.currency(
-                                locale: 'id_ID',
-                                decimalDigits: 0,
-                                symbol: "IDR ")
-                            .format(userState.userModels.balance),
-                        style: yellowNumberFont.copyWith(
-                            fontSize: 14, fontWeight: FontWeight.w400),
+                      GestureDetector(
+                        onTap: () {
+                          context
+                              .read<PageBloc>()
+                              .add(GoToWalletPage(GoToMainPage()));
+                        },
+                        child: Text(
+                          NumberFormat.currency(
+                                  locale: 'id_ID',
+                                  decimalDigits: 0,
+                                  symbol: "IDR ")
+                              .format(userState.userModels.balance),
+                          style: yellowNumberFont.copyWith(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
                       )
                     ],
                   )
