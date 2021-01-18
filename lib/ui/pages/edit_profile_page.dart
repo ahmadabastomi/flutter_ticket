@@ -9,11 +9,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String tmpProfilePicture;
   File tmpFileProfilePicture;
   String tmpName;
-  String tmpEmail;
   TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController retypePasswordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -29,9 +25,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             if (userState is UserLoaded) {
               tmpProfilePicture = userState.userModels.profilePicture;
               tmpName = userState.userModels.name;
-              tmpEmail = userState.userModels.email;
               nameController.text = userState.userModels.name;
-              emailController.text = userState.userModels.email;
               return Container(
                 padding:
                     EdgeInsets.symmetric(horizontal: defaultMargin.toDouble()),
@@ -118,6 +112,52 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         height: 24,
                       ),
                       //note: Form Edit Profile
+                      AbsorbPointer(
+                        child: Theme(
+                          data: Theme.of(context)
+                              .copyWith(primaryColor: accentColor2),
+                          child: TextField(
+                            controller: TextEditingController(
+                                text: userState.userModels.id),
+                            decoration: InputDecoration(
+                                labelText: 'User ID',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(6)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: accentColor2)),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      AbsorbPointer(
+                        child: Theme(
+                          data: Theme.of(context).copyWith(
+                            primaryColor: accentColor2,
+                          ),
+                          child: TextField(
+                            controller: TextEditingController(
+                                text: userState.userModels.email),
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(6)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: accentColor2)),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
                       Theme(
                         data: Theme.of(context)
                             .copyWith(primaryColor: accentColor2),
@@ -135,66 +175,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ),
                       ),
                       SizedBox(
-                        height: 16,
-                      ),
-                      Theme(
-                        data: Theme.of(context).copyWith(
-                          primaryColor: accentColor2,
-                        ),
-                        child: TextField(
-                          controller: emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              labelText: 'Email',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: accentColor2)),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Theme(
-                        data: Theme.of(context)
-                            .copyWith(primaryColor: accentColor2),
-                        child: TextField(
-                          controller: passwordController,
-                          obscureText: true,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                              labelText: 'Password',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: accentColor2)),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Theme(
-                        data: Theme.of(context)
-                            .copyWith(primaryColor: accentColor2),
-                        child: TextField(
-                          controller: retypePasswordController,
-                          keyboardType: TextInputType.text,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              labelText: 'Confirma Password',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: accentColor2)),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always),
-                        ),
-                      ),
-                      SizedBox(
                         height: 30,
                       ),
                       Center(
@@ -202,44 +182,45 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           width: 250,
                           height: 45,
                           child: RaisedButton(
-                            onPressed: () {
-                              if ((nameController.text.trim() == "" &&
-                                  emailController.text.trim() == "" &&
-                                  passwordController.text.trim() == "" &&
-                                  retypePasswordController.text.trim() == "")) {
+                            onPressed: () {},
+                            color: accentColor3,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Text(
+                              'Reset Password',
+                              style: whiteTextFont.copyWith(fontSize: 16),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: 250,
+                          height: 45,
+                          child: RaisedButton(
+                            onPressed: () async {
+                              if ((nameController.text.trim() == "")) {
                                 Flushbar(
                                   duration: Duration(milliseconds: 1500),
                                   flushbarPosition: FlushbarPosition.TOP,
                                   backgroundColor: Color(0xFFFF5C83),
                                   message: "Inputan tidak boleh kosong",
                                 )..show(context);
-                              } else if (passwordController.text !=
-                                  retypePasswordController.text) {
-                                Flushbar(
-                                  duration: Duration(milliseconds: 1500),
-                                  flushbarPosition: FlushbarPosition.TOP,
-                                  backgroundColor: Color(0xFFFF5C83),
-                                  message:
-                                      "Password dan confirmation password tidak sesuai",
-                                )..show(context);
-                              } else if (passwordController.text.length < 6) {
-                                Flushbar(
-                                  duration: Duration(milliseconds: 1500),
-                                  flushbarPosition: FlushbarPosition.TOP,
-                                  backgroundColor: Color(0xFFFF5C83),
-                                  message:
-                                      "Panjang minimal password 6 character",
-                                )..show(context);
-                              } else if (!EmailValidator.validate(
-                                  emailController.text)) {
-                                Flushbar(
-                                  duration: Duration(milliseconds: 1500),
-                                  flushbarPosition: FlushbarPosition.TOP,
-                                  backgroundColor: Color(0xFFFF5C83),
-                                  message: "Format email tidak sesuai",
-                                )..show(context);
                               } else {
-                                
+                                if (tmpFileProfilePicture != null) {
+                                  tmpProfilePicture =
+                                      await uploadImage(tmpFileProfilePicture);
+                                }
+                                context.read<UserBloc>().add(UpdateData(
+                                    name: nameController.text,
+                                    profilImage: tmpProfilePicture));
+                                context.read<PageBloc>().add(GoToProfilePage());
+                                setState(() {
+                                  
+                                });
                               }
                             },
                             shape: RoundedRectangleBorder(
