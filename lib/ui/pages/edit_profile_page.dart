@@ -182,7 +182,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           width: 250,
                           height: 45,
                           child: RaisedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await AuthServices.resetPassword(
+                                  userState.userModels.email);
+
+                              Flushbar(
+                                duration: Duration(milliseconds: 2000),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                backgroundColor: Color(0xFFFF5C83),
+                                message:
+                                    "Link reset password sudah dikirim di email anda.",
+                              )..show(context);
+                            },
                             color: accentColor3,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
@@ -218,9 +229,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     name: nameController.text,
                                     profilImage: tmpProfilePicture));
                                 context.read<PageBloc>().add(GoToProfilePage());
-                                setState(() {
-                                  
-                                });
+                                setState(() {});
                               }
                             },
                             shape: RoundedRectangleBorder(
