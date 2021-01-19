@@ -16,7 +16,7 @@ class OnLoginPage extends PageState {}
 class OnMainPage extends PageState {
   final int bottomNavbarIndex;
   final bool isExpiredTicket;
-  OnMainPage({this.bottomNavbarIndex,this.isExpiredTicket});
+  OnMainPage({this.bottomNavbarIndex = 0,this.isExpiredTicket = false});
   List<Object> get props => [bottomNavbarIndex,isExpiredTicket];
 }
 

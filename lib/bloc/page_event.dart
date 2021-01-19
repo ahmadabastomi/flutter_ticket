@@ -14,7 +14,7 @@ class GoToLoginPage extends PageEvent {}
 class GoToMainPage extends PageEvent {
   final int bottomNavbarIndex;
   final bool isExpiredTicket;
-  GoToMainPage({this.bottomNavbarIndex, this.isExpiredTicket});
+  GoToMainPage({this.bottomNavbarIndex = 0, this.isExpiredTicket = false});
   List<Object> get props => [bottomNavbarIndex, isExpiredTicket];
 }
 
