@@ -181,7 +181,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         child: SizedBox(
                           width: 250,
                           height: 45,
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             onPressed: () async {
                               await AuthServices.resetPassword(
                                   userState.userModels.email);
@@ -194,9 +194,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     "Link reset password sudah dikirim di email anda.",
                               )..show(context);
                             },
-                            color: accentColor3,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
+                            style: ElevatedButton.styleFrom(
+                                primary: accentColor3,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
                             child: Text(
                               'Reset Password',
                               style: whiteTextFont.copyWith(fontSize: 16),
@@ -211,7 +212,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         child: SizedBox(
                           width: 250,
                           height: 45,
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             onPressed: () async {
                               if ((nameController.text.trim() == "")) {
                                 Flushbar(
@@ -232,9 +233,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 setState(() {});
                               }
                             },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            color: mainColor,
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                                primary: mainColor),
                             child: Text('Update My Profile',
                                 style: whiteTextFont.copyWith(fontSize: 16)),
                           ),

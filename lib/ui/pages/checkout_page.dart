@@ -339,10 +339,18 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                 child: Container(
                                   width: 250,
                                   height: 45,
-                                  child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        primary: (totalPrice <=
+                                                ((userState as UserLoaded)
+                                                    .userModels
+                                                    .balance))
+                                            ? Color(0xFF3E9D9D)
+                                            : mainColor,
+                                      ),
                                       onPressed: () {
                                         if (totalPrice <=
                                             (userState as UserLoaded)
@@ -376,12 +384,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
                                                   widget.ticketModels)));
                                         }
                                       },
-                                      color: (totalPrice <=
-                                              ((userState as UserLoaded)
-                                                  .userModels
-                                                  .balance))
-                                          ? Color(0xFF3E9D9D)
-                                          : mainColor,
                                       child: Text(
                                           (totalPrice <=
                                                   (userState as UserLoaded)

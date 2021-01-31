@@ -114,11 +114,7 @@ class _SignInPageState extends State<SignInPage> {
                           ? SpinKitFadingCircle(
                               color: mainColor,
                             )
-                          : FlatButton(
-                              height: 50,
-                              color: (isEmailValid && isPasswordValid)
-                                  ? mainColor
-                                  : Color(0xFFE4E4E4),
+                          : ElevatedButton(
                               onPressed: (isEmailValid && isPasswordValid)
                                   ? () async {
                                       setState(() {
@@ -151,7 +147,13 @@ class _SignInPageState extends State<SignInPage> {
                                     ? Colors.white
                                     : Color(0xFFBEBEBE),
                               ),
-                              shape: CircleBorder(),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                minimumSize: Size.fromHeight(50),
+                                primary: (isEmailValid && isPasswordValid)
+                                    ? mainColor
+                                    : Color(0xFFE4E4E4),
+                              ),
                             )),
                   Container(
                     margin: EdgeInsets.only(top: 50),

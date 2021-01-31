@@ -103,13 +103,14 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                       : SizedBox(
                           height: 45,
                           width: 250,
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             onPressed: () async {
                               setState(() {
                                 isSigningUp = true;
                               });
 
-                              imageFileToUpload = widget.registrationModels.profileImage;
+                              imageFileToUpload =
+                                  widget.registrationModels.profileImage;
 
                               SignInSignUpResult result =
                                   await AuthServices.signUp(
@@ -131,9 +132,10 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                 )..show(context);
                               }
                             },
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                            color: Color(0xFF3E9D9D),
+                            style: ElevatedButton.styleFrom(
+                                primary: Color(0xFF3E9D9D),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8))),
                             child: Text("Create My Account",
                                 style: whiteTextFont.copyWith(fontSize: 16)),
                           ),

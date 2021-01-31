@@ -62,8 +62,9 @@ class MovieDetailPage extends StatelessWidget {
                                     ),
                                     Container(
                                       alignment: Alignment.topLeft,
-                                      margin:
-                                          EdgeInsets.only(top: 36, left: defaultMargin.toDouble()),
+                                      margin: EdgeInsets.only(
+                                          top: 36,
+                                          left: defaultMargin.toDouble()),
                                       child: GestureDetector(
                                         onTap: () {
                                           context
@@ -180,16 +181,17 @@ class MovieDetailPage extends StatelessWidget {
                                   child: Container(
                                     width: 250,
                                     height: 45,
-                                    child: RaisedButton(
+                                    child: ElevatedButton(
                                       onPressed: () {
                                         context.read<PageBloc>().add(
                                             GoToSelectSchedulePage(
                                                 movieDetailModels));
                                       },
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      color: mainColor,
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          primary: mainColor),
                                       child: Text(
                                         'Continue to Book',
                                         style: whiteTextFont.copyWith(

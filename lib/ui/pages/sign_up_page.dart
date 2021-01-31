@@ -197,7 +197,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: FlatButton(
+                      child: ElevatedButton(
                         onPressed: () {
                           if ((nameController.text.trim() == "" &&
                               emailController.text.trim() == "" &&
@@ -245,9 +245,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                 GoToPreferencePage(widget.registrationModels));
                           }
                         },
-                        height: 50,
-                        color: mainColor,
-                        shape: CircleBorder(),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size.fromHeight(50),
+                          primary: mainColor,
+                          shape: CircleBorder(),
+                        ),
                         child: Icon(
                           Icons.arrow_forward,
                           size: 24,

@@ -115,7 +115,7 @@ class _TopUpPageState extends State<TopUpPage> {
                 child:
                     BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                   if (userState is UserLoaded) {
-                    return RaisedButton(
+                    return ElevatedButton(
                       onPressed: (selectedAmount > 0)
                           ? () {
                               context.read<PageBloc>().add(GoToSuccesspage(
@@ -129,16 +129,35 @@ class _TopUpPageState extends State<TopUpPage> {
                                       amount: selectedAmount)));
                             }
                           : null,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      disabledColor: Color(0xFF3E9D9D),
-                      color: mainColor,
+                      // style: ElevatedButton.styleFrom(
+                      //   shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(6),
+                      //   ),
+                      //   //disabledColor: Color(0xFF3E9D9D),
+                      //   primary: mainColor,
+                      // ),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              if (states.contains(MaterialState.pressed))
+                                return mainColor.withOpacity(0.5);
+                              else if (states.contains(MaterialState.disabled))
+                                return Color(0xFF3E9D9D);
+                              return null; // Use the component's default.
+                            },
+                          ),
+                          shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8)))),
                       child: Text(
                         'Top Up Now',
-                        style: whiteTextFont.copyWith(fontSize: 16,color: (selectedAmount > 0)
-                          ? Colors.white
-                          : Color(0xFFBEBEBE),),
+                        style: whiteTextFont.copyWith(
+                          fontSize: 16,
+                          color: (selectedAmount > 0)
+                              ? Colors.white
+                              : Color(0xFFBEBEBE),
+                        ),
                       ),
                     );
                   } else {

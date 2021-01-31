@@ -245,14 +245,16 @@ class ProfilePage extends StatelessWidget {
                 child: Container(
                   width: 250,
                   height: 45,
-                  child: RaisedButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       context.read<UserBloc>().add(SignOut());
                       AuthServices.signOut();
                     },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    color: mainColor,
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      primary: mainColor,
+                    ),
                     child: Text(
                       'Sign Out',
                       style: whiteTextFont,

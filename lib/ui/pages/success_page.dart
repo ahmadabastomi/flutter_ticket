@@ -33,7 +33,8 @@ class _SuccessPageState extends State<SuccessPage> {
   void initState() {
     handleTicketOrder =
         (widget.ticketModels != null) ? processingTicketOrder(context) : null;
-    handleTopUp = (widget.ticketModels == null)?processingTopUp(context): null;
+    handleTopUp =
+        (widget.ticketModels == null) ? processingTopUp(context) : null;
     super.initState();
   }
 
@@ -93,17 +94,23 @@ class _SuccessPageState extends State<SuccessPage> {
                           Container(
                             width: 250,
                             height: 45,
-                            child: RaisedButton(
+                            child: ElevatedButton(
                               onPressed: () {
                                 if (widget.ticketModels != null) {
-                                  context.read<PageBloc>().add(GoToMainPage(bottomNavbarIndex: 1));
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToMainPage(bottomNavbarIndex: 1));
                                 } else {
-                                  context.read<PageBloc>().add(GoToWalletPage(GoToMainPage()));
+                                  context
+                                      .read<PageBloc>()
+                                      .add(GoToWalletPage(GoToMainPage()));
                                 }
                               },
-                              color: mainColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8)),
+                              style: ElevatedButton.styleFrom(
+                                primary: mainColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
                               child: Text(
                                 (widget.ticketModels != null)
                                     ? 'My Tickets'

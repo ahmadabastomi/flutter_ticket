@@ -35,9 +35,7 @@ class SplashPage extends StatelessWidget {
               margin: EdgeInsets.only(top: 70, bottom: 20),
               width: 250,
               height: 45,
-              child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)),
+              child: ElevatedButton(
                 onPressed: () {
                   context
                       .read<PageBloc>()
@@ -47,7 +45,11 @@ class SplashPage extends StatelessWidget {
                   'Get Started',
                   style: whiteTextFont.copyWith(fontSize: 16),
                 ),
-                color: mainColor,
+                style: ElevatedButton.styleFrom(
+                  primary: mainColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                ),
               ),
             ),
             Container(
